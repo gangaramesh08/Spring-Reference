@@ -13,12 +13,12 @@ import spring.service.AccountService;
 import java.time.LocalDateTime;
 
 public class AccountMain {
-    @Autowired
-    static BeanFactory applicationContext;
+  /*  @Autowired
+    static BeanFactory applicationContext;*/
 
     public static void main(String[] args) {
         /***Java Based Configuration metadata ***/
-       // ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AccountConfiguration.class);
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AccountConfiguration.class);
         AccountService accountService = applicationContext.getBean("accountService",AccountService.class);
 
         Account account = new Account(1, "Ganga", 60000, LocalDateTime.now());
@@ -27,6 +27,8 @@ public class AccountMain {
         System.out.println("Java based configuration Metadata ");
         accountService.addAccount(account);
         accountService.addAccount(account2);
+        AccountService accountService1 = applicationContext.getBean("accountService",AccountService.class);
+        accountService1.addAccount(account);
 
         System.out.println("Before transfer : ");
         System.out.println(account.getOwnerName() + " : " + account.getBalance() + "\n" + account2.getOwnerName() + " : " + account2.getBalance());
