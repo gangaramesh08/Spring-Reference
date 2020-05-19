@@ -1,5 +1,6 @@
 package spring;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import spring.model.Account;
 import spring.service.AccountService;
 import org.springframework.context.ApplicationContext;
@@ -14,7 +15,7 @@ public class AccountMain {
 
         /***XML based Configuration Metadata***/
         ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-        AccountService accountService = context.getBean("accountService", AccountService.class);
+        AccountService accountService = context.getBean("serviceAlias", AccountService.class);
 
         Account account = new Account(1, "Ganga", 60000, LocalDateTime.now());
         Account account2 = new Account(2, "Ashwin", 30000, LocalDateTime.now());

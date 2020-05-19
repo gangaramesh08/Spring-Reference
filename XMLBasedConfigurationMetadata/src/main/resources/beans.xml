@@ -5,9 +5,10 @@
 http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-    <bean id="accountService" class="spring.service.AccountServiceImpl" depends-on="accountDao">
+    <bean id="accountService" class="spring.service.AccountServiceImpl" name= "service" depends-on="accountDao">
         <property name="accountDao" ref="accountDao"/>
     </bean>
+    <alias name="service" alias="serviceAlias"/>
 
     <bean id="accountDao" class="spring.dao.AccountDaoInMemoryImpl">
     </bean>
