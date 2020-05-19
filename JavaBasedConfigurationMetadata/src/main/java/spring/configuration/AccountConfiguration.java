@@ -11,7 +11,7 @@ import org.springframework.context.annotation.DependsOn;
 @Configuration
 public class AccountConfiguration {
 
-    @Bean
+    @Bean(name ={"service","serviceAlias"})
     @DependsOn("accountDao")
     public AccountService accountService(){
         AccountServiceImpl accountServicebean = new AccountServiceImpl();
