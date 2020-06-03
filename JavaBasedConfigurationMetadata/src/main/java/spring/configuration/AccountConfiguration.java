@@ -2,6 +2,7 @@ package spring.configuration;
 
 import spring.dao.AccountDao;
 import spring.dao.AccountDaoInMemoryImpl;
+import spring.model.Account;
 import spring.service.AccountService;
 import spring.service.AccountServiceImpl;
 import org.springframework.context.annotation.Bean;
@@ -23,5 +24,12 @@ public class AccountConfiguration {
     public AccountDao accountDao(){
         AccountDaoInMemoryImpl accountDaoInMemorybean = new AccountDaoInMemoryImpl();
         return accountDaoInMemorybean;
+    }
+
+    @Bean
+    public Account account(){
+        Account account = new Account();
+        account.setOwnerName("Ganga");
+        return account;
     }
 }

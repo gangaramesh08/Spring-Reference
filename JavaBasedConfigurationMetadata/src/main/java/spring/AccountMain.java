@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 import spring.configuration.AccountConfiguration;
+import spring.configuration.AccountConfiguration2;
 import spring.model.Account;
 import spring.service.AccountService;
 
@@ -18,7 +19,7 @@ public class AccountMain {
 
     public static void main(String[] args) {
         /***Java Based Configuration metadata ***/
-        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AccountConfiguration.class);
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AccountConfiguration2.class, AccountConfiguration.class);
         AccountService accountService = applicationContext.getBean("serviceAlias",AccountService.class);
 
         Account account = new Account(1, "Ganga", 60000, LocalDateTime.now());
@@ -35,5 +36,9 @@ public class AccountMain {
         System.out.println("After transferring 10000");
         accountService.transferMoney(1, 2, 10000);
         System.out.println(account.getOwnerName() + " : " + account.getBalance() + "\n" + account2.getOwnerName() + " : " + account2.getBalance());
+
+        /*** To demonstrate overriding of beans ***/
+        Account acc1 = applicationContext.getBean("account",Account.class);
+        System.out.println(acc1.getOwnerName());
     }
 }
