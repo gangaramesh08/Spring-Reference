@@ -13,7 +13,7 @@ import org.springframework.context.annotation.DependsOn;
 public class AccountConfiguration {
 
     @Bean(name ={"service","serviceAlias"})
-    @DependsOn("accountDao")
+    @DependsOn({"accountDao","account"})
     public AccountService accountService(){
         AccountServiceImpl accountServicebean = new AccountServiceImpl();
         accountServicebean.setAccountDao(accountDao());
