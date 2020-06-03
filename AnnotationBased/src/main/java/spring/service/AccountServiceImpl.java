@@ -1,11 +1,13 @@
 package spring.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Service;
 import spring.dao.AccountDao;
 import spring.model.Account;
 
 @Service
+@DependsOn("accountDaoInMemoryImpl")
 public class AccountServiceImpl implements AccountService {
     private AccountDao accountDao;
 
