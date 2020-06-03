@@ -7,7 +7,7 @@ import spring.dao.AccountDao;
 import spring.model.Account;
 
 @Service
-@DependsOn("accountDaoInMemoryImpl")
+@DependsOn({"accountDaoInMemoryImpl","account"})
 public class AccountServiceImpl implements AccountService {
     private AccountDao accountDao;
 

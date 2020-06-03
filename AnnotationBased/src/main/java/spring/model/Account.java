@@ -1,12 +1,18 @@
 package spring.model;
 
+import org.springframework.stereotype.Component;
+
 import java.time.LocalDateTime;
 
+@Component
 public class Account {
     private long id;
     private String ownerName;
     private double balance;
     private LocalDateTime accessTime;
+    public Account(){
+
+    }
 
     public Account(long id, String ownerName, double balance, LocalDateTime accessTime) {
         this.id = id;
