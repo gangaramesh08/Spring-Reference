@@ -5,7 +5,7 @@
 http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-    <bean id="accountService" class="spring.service.AccountServiceImpl" name= "service" autowire="byType" depends-on="account,accountDao">
+    <bean id="accountService" class="spring.service.AccountServiceImpl" name= "service" autowire="byName" depends-on="account,accountDao">
         <!--<property name="accountDao" ref="accountDao"/>-->
     </bean>
     <alias name="service" alias="serviceAlias"/>
@@ -13,7 +13,7 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
     <bean id="accountDao" class="spring.dao.AccountDaoInMemoryImpl">
     </bean>
 
-    <bean id="accountDaoJdbc" autowire-candidate="false" class = "spring.dao.AccountDaoJdbcImpl">
+    <bean id="accountDaoJdbc"  class = "spring.dao.AccountDaoJdbcImpl">
     </bean>
 
     <bean id="autowireCheck" class="spring.dao.AutowireCheck">
