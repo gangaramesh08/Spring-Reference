@@ -1,10 +1,15 @@
 package spring.service;
 
 import spring.dao.AccountDao;
+import spring.dao.AutowireCheck;
 import spring.model.Account;
 
 public class AccountServiceImpl implements AccountService {
     private AccountDao accountDao;
+    private AutowireCheck check;
+    public void setAutowireCheck(AutowireCheck check){
+        this.check = check;
+    }
 
     public void setAccountDao(AccountDao accountDao) {
         this.accountDao = accountDao;
@@ -42,6 +47,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void addAccount(Account account) {
+        System.out.println("Before adding money check if account is autowired: "+check.getName());
         accountDao.insert(account);
     }
 }

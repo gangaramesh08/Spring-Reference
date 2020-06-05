@@ -8,6 +8,10 @@ public class Account {
     private double balance;
     private LocalDateTime accessTime;
 
+    public Account(String name) {
+        this.ownerName= name;
+    }
+
     public Account(long id, String ownerName, double balance, LocalDateTime accessTime) {
         this.id = id;
         this.ownerName = ownerName;
