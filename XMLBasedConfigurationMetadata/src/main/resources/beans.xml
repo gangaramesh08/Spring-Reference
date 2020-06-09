@@ -5,16 +5,16 @@
 http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-    <bean id="accountService" class="spring.service.AccountServiceImpl" name= "service" autowire="byName" depends-on="account,accountDao">
+    <bean id="accountService" class="spring.service.AccountServiceImpl" name= "service" autowire="constructor" depends-on="account,accountDao">
         <!--<property name="accountDao" ref="accountDao"/>-->
     </bean>
     <alias name="service" alias="serviceAlias"/>
 
-    <bean id="accountDao" class="spring.dao.AccountDaoInMemoryImpl">
+    <bean id="accountDao" autowire-candidate="true" class="spring.dao.AccountDaoInMemoryImpl">
     </bean>
 
-    <bean id="accountDaoJdbc"  class = "spring.dao.AccountDaoJdbcImpl">
-    </bean>
+   <!-- <bean id="accountDaoJdbc"  autowire-candidate="false" class = "spring.dao.AccountDaoJdbcImpl">
+    </bean>-->
 
     <bean id="autowireCheck" class="spring.dao.AutowireCheck">
     <property name="name" value="Autowired"></property>

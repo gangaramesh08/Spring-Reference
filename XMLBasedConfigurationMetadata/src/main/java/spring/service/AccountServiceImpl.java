@@ -7,6 +7,12 @@ import spring.model.Account;
 public class AccountServiceImpl implements AccountService {
     private AccountDao accountDao;
     private AutowireCheck check;
+
+    public AccountServiceImpl(AutowireCheck check,AccountDao accountDao) {
+        this.accountDao=accountDao;
+        this.check = check;
+    }
+
     public void setAutowireCheck(AutowireCheck check){
         this.check = check;
     }

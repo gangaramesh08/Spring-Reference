@@ -4,7 +4,7 @@ import spring.model.Account;
 
 import java.util.List;
 
-public class AccountDaoJdbcImpl implements AccountDao{
+public class AccountDaoJdbcImpl {/*implements AccountDao{
     @Override
     public void insert(Account account) {
 
@@ -38,5 +38,6 @@ public class AccountDaoJdbcImpl implements AccountDao{
     @Override
     public List<Account> find(String ownerName) {
         return null;
-    }
+    }*/{
+}
 }
