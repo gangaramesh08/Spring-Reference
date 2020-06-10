@@ -7,24 +7,26 @@ import spring.dao.AccountDao;
 import spring.model.Account;
 
 @Service
-@DependsOn({"accountDaoInMemoryImpl","account"})
+//@DependsOn({"accountDaoInMemoryImpl","account"})
 public class AccountServiceImpl implements AccountService {
-    private AccountDao accountDao;
 
     @Autowired
-    public void setAccountDao(AccountDao accountDao) {
+    private AccountDao accountDaos;
+
+
+    /*public void setAccountDao(AccountDao accountDao) {
         this.accountDao = accountDao;
-    }
+    }*/
 
     @Override
     public void transferMoney(long sourceAccountId, long targetAccountId, double amount) {
-        Account source = accountDao.find(sourceAccountId);
-        Account target = accountDao.find(targetAccountId);
+        Account source = accountDaos.find(sourceAccountId);
+        Account target = accountDaos.find(targetAccountId);
         if(source.getBalance()>=amount){
             source.setBalance(source.getBalance() - amount);
             target.setBalance(target.getBalance() + amount);
-            accountDao.update(source);
-            accountDao.update(target);
+            accountDaos.update(source);
+            accountDaos.update(target);
         }
         else{
             System.out.println("Not enough balance");
@@ -34,20 +36,20 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void depositMoney(long accountId, double amount) throws Exception {
-        Account account = accountDao.find(accountId);
+        Account account = accountDaos.find(accountId);
         if(account!=null){
             account.setBalance(amount);
-            accountDao.update(account);
+            accountDaos.update(account);
         }
     }
 
     @Override
     public Account getAccount(long accountId) {
-        return accountDao.find(accountId);
+        return accountDaos.find(accountId);
     }
 
     @Override
     public void addAccount(Account account) {
-        accountDao.insert(account);
+        accountDaos.insert(account);
     }
 }
