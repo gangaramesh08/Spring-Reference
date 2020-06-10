@@ -26,5 +26,8 @@ public class AccountMain {
         System.out.println("After transfer");
         System.out.println(account.getOwnerName()+" : "+account.getBalance());
         System.out.println(account2.getOwnerName()+" : "+account2.getBalance());
+
+        Account acc = applicationContext.getBean("account",Account.class);
+        System.out.println("Displaying "+acc.getOwnerName());
     }
 }
