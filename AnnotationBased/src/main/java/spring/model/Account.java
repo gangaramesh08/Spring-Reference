@@ -1,5 +1,6 @@
 package spring.model;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -7,11 +8,11 @@ import java.time.LocalDateTime;
 @Component
 public class Account {
     private long id;
+    @Value("${account.ownername}")
     private String ownerName;
     private double balance;
     private LocalDateTime accessTime;
     public Account(){
-
     }
 
     public Account(long id, String ownerName, double balance, LocalDateTime accessTime) {
