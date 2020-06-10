@@ -1,7 +1,9 @@
 package spring.configuration;
 
+import org.springframework.beans.factory.annotation.Autowire;
 import spring.dao.AccountDao;
 import spring.dao.AccountDaoInMemoryImpl;
+import spring.dao.AccountDaoJdbcImpl;
 import spring.model.Account;
 import spring.service.AccountService;
 import spring.service.AccountServiceImpl;
@@ -16,7 +18,7 @@ public class AccountConfiguration {
     @DependsOn({"accountDao","account"})
     public AccountService accountService(){
         AccountServiceImpl accountServicebean = new AccountServiceImpl();
-        accountServicebean.setAccountDao(accountDao());
+        //accountServicebean.setAccountDao(accountDao());
         return accountServicebean;
     }
 
@@ -24,6 +26,12 @@ public class AccountConfiguration {
     public AccountDao accountDao(){
         AccountDaoInMemoryImpl accountDaoInMemorybean = new AccountDaoInMemoryImpl();
         return accountDaoInMemorybean;
+    }
+
+    @Bean
+    public AccountDao accountJdbcDao(){
+        AccountDaoJdbcImpl accountDaoJdbc = new AccountDaoJdbcImpl();
+        return accountDaoJdbc;
     }
 
     @Bean
