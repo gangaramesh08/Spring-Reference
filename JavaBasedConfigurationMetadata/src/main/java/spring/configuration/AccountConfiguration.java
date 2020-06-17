@@ -1,6 +1,7 @@
 package spring.configuration;
 
 import org.springframework.context.annotation.*;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import spring.dao.AccountDao;
 import spring.dao.AccountDaoInMemoryImpl;
 import spring.dao.AccountDaoJdbcImpl;
@@ -37,4 +38,10 @@ public class AccountConfiguration {
         //account.setOwnerName("Ganga");
         return account;
     }
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
+
 }
