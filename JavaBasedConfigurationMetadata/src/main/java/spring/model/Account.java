@@ -1,9 +1,16 @@
 package spring.model;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
+
 import java.time.LocalDateTime;
 
+@Component
+@PropertySource("{classpath:application.properties}")
 public class Account {
     private long id;
+    @Value("${owner}")
     private String ownerName;
     private double balance;
     private LocalDateTime accessTime;

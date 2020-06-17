@@ -1,15 +1,12 @@
 package spring.configuration;
 
-import org.springframework.beans.factory.annotation.Autowire;
+import org.springframework.context.annotation.*;
 import spring.dao.AccountDao;
 import spring.dao.AccountDaoInMemoryImpl;
 import spring.dao.AccountDaoJdbcImpl;
 import spring.model.Account;
 import spring.service.AccountService;
 import spring.service.AccountServiceImpl;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
 
 @Configuration
 public class AccountConfiguration {
@@ -37,7 +34,7 @@ public class AccountConfiguration {
     @Bean
     public Account account(){
         Account account = new Account();
-        account.setOwnerName("Ganga");
+        //account.setOwnerName("Ganga");
         return account;
     }
 }
