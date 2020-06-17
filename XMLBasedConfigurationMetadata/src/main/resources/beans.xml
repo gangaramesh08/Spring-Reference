@@ -9,7 +9,14 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
       &lt;!&ndash;  <property name="accountDao" ref="accountDao"/>
         <property name="check" ref ="autowireCheck"/>&ndash;&gt;
     </bean>-->
-    <bean id="accountService" class="spring.configuration.AccountBeanFactory" name="service" factory-method="accountService">
+    <!--<bean id="accountService" class="spring.configuration.AccountBeanFactory" name="service" factory-method="accountService">
+        <property name="accountDao" ref="accountDao"/>
+        <property name="autowireCheck" ref ="autowireCheck"/>
+    </bean>-->
+
+    <bean id="accountBeanFactory" class="spring.configuration.AccountBeanFactory"/>
+
+    <bean id="accountServiceImpl" class="spring.configuration.AccountBeanFactory" name="service" factory-bean="accountBeanFactory" factory-method="accountServiceImpl">
         <property name="accountDao" ref="accountDao"/>
         <property name="autowireCheck" ref ="autowireCheck"/>
     </bean>
