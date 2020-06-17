@@ -8,7 +8,10 @@ public class AccountServiceImpl implements AccountService {
     private AccountDao accountDao;
     private AutowireCheck check;
 
-    public AccountServiceImpl(AutowireCheck check,AccountDao accountDao) {
+    public AccountServiceImpl() {
+    }
+
+    public AccountServiceImpl(AutowireCheck check, AccountDao accountDao) {
         this.accountDao=accountDao;
         this.check = check;
     }
