@@ -1,5 +1,6 @@
 package spring.service;
 
+import spring.configuration.PrototypeManager;
 import spring.dao.AccountDao;
 import spring.dao.AutowireCheck;
 import spring.model.Account;
@@ -7,13 +8,22 @@ import spring.model.Account;
 public class AccountServiceImpl implements AccountService {
     private AccountDao accountDao;
     private AutowireCheck check;
+    private PrototypeManager prototypeManager;
 
     public AccountServiceImpl() {
     }
 
+   /* public AccountDao getAccountDao() {
+        return accountDao;
+    }*/
+
     public AccountServiceImpl(AutowireCheck check, AccountDao accountDao) {
         this.accountDao=accountDao;
         this.check = check;
+    }
+
+    public void setPrototypeManager(PrototypeManager prototypeManager) {
+        this.prototypeManager = prototypeManager;
     }
 
     public void setAutowireCheck(AutowireCheck check){
@@ -26,6 +36,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void transferMoney(long sourceAccountId, long targetAccountId, double amount) {
+        System.out.println("Printing the hashcode of accountDao in transferMoney :"+prototypeManager.getAccountDao().hashCode());
         Account source = accountDao.find(sourceAccountId);
         Account target = accountDao.find(targetAccountId);
         if(source.getBalance()>=amount){
@@ -56,6 +67,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void addAccount(Account account) {
+        System.out.println("Printing the hashcode of accountDao in addAccount:"+prototypeManager.getAccountDao().hashCode());
         System.out.println("Before adding money check if account is autowired: "+check.getName());
         accountDao.insert(account);
     }

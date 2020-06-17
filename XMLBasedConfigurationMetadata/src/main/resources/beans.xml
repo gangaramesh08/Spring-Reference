@@ -19,10 +19,12 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
     <bean id="accountServiceImpl" class="spring.configuration.AccountBeanFactory" name="service" factory-bean="accountBeanFactory" factory-method="accountServiceImpl">
         <property name="accountDao" ref="accountDao"/>
         <property name="autowireCheck" ref ="autowireCheck"/>
+        <property name="prototypeManager" ref="prototypeManager"/>
     </bean>
     <alias name="service" alias="serviceAlias"/>
 
-    <bean id="accountDao" autowire-candidate="true" class="spring.dao.AccountDaoInMemoryImpl">
+    <bean id="accountDao" autowire-candidate="true" scope="prototype" class="spring.dao.AccountDaoInMemoryImpl">
+
     </bean>
 
    <!-- <bean id="accountDaoJdbc"  autowire-candidate="false" class = "spring.dao.AccountDaoJdbcImpl">
@@ -36,4 +38,6 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
         <property name="ownerName" value = "Ganga"/>
         <constructor-arg type = "String" value = "Ganga"/>
     </bean>
+
+    <bean id="prototypeManager" class="spring.configuration.PrototypeManager"/>
 </beans>
